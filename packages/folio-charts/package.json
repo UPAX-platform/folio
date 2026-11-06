@@ -1,6 +1,6 @@
 {
   "name": "@upax-ai/folio-charts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Charts in Folio documents: a strict source grammar, checks, and an inline-SVG renderer with no runtime dependencies",
   "license": "MIT",
   "type": "module",

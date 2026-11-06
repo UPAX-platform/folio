@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.1.1
+
+- README: link to the source repository. No code changes.
+
 ## 0.1.0
 
 - First public release: `parseChartSource`, `printChartSource`, `checkChart`,

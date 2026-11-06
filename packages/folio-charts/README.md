@@ -9,6 +9,8 @@ are supported.
 npm install @upax-ai/folio-charts
 ```
 
+Source and issues live in [UPAX-platform/folio](https://github.com/UPAX-platform/folio).
+
 ## Writing a chart
 
 A chart is a strict subset of YAML 1.2. [GRAMMAR.md](GRAMMAR.md) is the full definition.
