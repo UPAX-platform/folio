@@ -1,0 +1,184 @@
+/*
+ * Charts drawn by @upax-ai/folio-charts. Class names are the renderer's and stay as
+ * they are, so the SVG's bytes don't depend on the theme. Colors come only from
+ * tokens the host page defines, so light and dark follow its theme:
+ *
+ *   --chart-surface        the figure's background; backs labels and headings
+ *   --chart-sunk           to-do nodes, group fill
+ *   --chart-line           figure border, group outline
+ *   --chart-line-strong    node outline
+ *   --chart-strong         node text, start marker
+ *   --chart-muted          caption, legend, headings, neutral edges
+ *   --chart-subtle         `fail` edges
+ *   --chart-success        approved and done
+ *   --chart-success-soft   their fill
+ *   --chart-danger         rejected
+ *   --chart-accent         in progress and in review
+ *   --chart-accent-soft    their fill
+ *   --chart-radius         the figure's corners
+ *   --chart-font           the drawing's font family
+ *
+ * Node and edge tones are classes.
+ */
+.s-chart {
+  --chart-ok: var(--chart-success);
+  --chart-ok-soft: var(--chart-success-soft);
+  --chart-no: var(--chart-danger);
+  --chart-no-soft: color-mix(in oklab, var(--chart-danger) 10%, var(--chart-surface));
+  --chart-wait: var(--chart-accent);
+  --chart-wait-soft: var(--chart-accent-soft);
+  margin-block: 1.5rem;
+  margin-inline: 0;
+  padding: 1rem;
+  border: 1px solid var(--chart-line);
+  border-radius: var(--chart-radius);
+  background: var(--chart-surface);
+}
+.s-chart-scroll {
+  overflow-x: auto;
+}
+.s-chart svg {
+  display: block;
+  max-inline-size: 100%;
+  block-size: auto;
+  margin-inline: auto;
+  font: 500 13px/1 var(--chart-font);
+  overflow: visible;
+}
+[dir='rtl'] .s-chart svg text {
+  direction: rtl;
+}
+.s-chart figcaption {
+  margin-block-start: 0.75rem;
+  color: var(--chart-muted);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+/* Nodes */
+.s-chart-shape {
+  fill: var(--chart-surface);
+  stroke: var(--chart-line-strong);
+  stroke-width: 1.5;
+}
+.s-chart-node text {
+  fill: var(--chart-strong);
+}
+.s-chart-n-todo .s-chart-shape {
+  fill: var(--chart-sunk);
+}
+.s-chart-n-progress .s-chart-shape,
+.s-chart-n-review .s-chart-shape {
+  fill: var(--chart-wait-soft);
+  stroke: var(--chart-wait);
+}
+.s-chart-n-review .s-chart-shape {
+  stroke-dasharray: 5 3;
+}
+.s-chart-n-done .s-chart-shape,
+.s-chart-n-approve .s-chart-shape {
+  fill: var(--chart-ok-soft);
+  stroke: var(--chart-ok);
+}
+.s-chart-n-reject .s-chart-shape {
+  fill: var(--chart-no-soft);
+  stroke: var(--chart-no);
+}
+.s-chart-ring {
+  fill: none;
+  stroke: currentColor;
+  opacity: 0.4;
+}
+.s-chart-start {
+  fill: var(--chart-strong);
+}
+
+/* Groups: the heading's first rect is an opaque backing, the second repeats the box fill. */
+.s-chart-group {
+  fill: color-mix(in oklab, var(--chart-sunk) 55%, transparent);
+  stroke: var(--chart-line);
+  stroke-dasharray: 4 4;
+}
+.s-chart-head rect:first-child {
+  fill: var(--chart-surface);
+}
+.s-chart-head rect.s-chart-group {
+  stroke: none;
+}
+.s-chart-head text {
+  fill: var(--chart-muted);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Edges, arrow tips and their labels share the tone classes. */
+.s-chart-edge {
+  fill: none;
+  stroke: var(--chart-tone, var(--chart-muted));
+  stroke-width: 1.5;
+}
+.s-chart-tip path {
+  fill: var(--chart-tone, var(--chart-muted));
+}
+.s-chart-e-approve {
+  --chart-tone: var(--chart-ok);
+}
+.s-chart-e-reject {
+  --chart-tone: var(--chart-no);
+}
+.s-chart-e-review {
+  --chart-tone: var(--chart-wait);
+}
+.s-chart-e-fail {
+  --chart-tone: var(--chart-subtle);
+}
+.s-chart-edge:is(.s-chart-e-review, .s-chart-e-fail) {
+  stroke-dasharray: 6 4;
+}
+.s-chart-label rect {
+  fill: var(--chart-surface);
+}
+.s-chart-label text {
+  fill: var(--chart-tone, var(--chart-muted));
+  font-size: 12px;
+}
+.s-chart-label.s-chart-e-neutral text {
+  fill: var(--chart-muted);
+}
+
+/* Legend */
+.s-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem 1.25rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--chart-muted);
+  font-size: 0.8125rem;
+}
+.s-chart-legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+}
+.s-chart-key {
+  inline-size: 1.5rem;
+  border-block-start: 2px solid var(--chart-tone, var(--chart-muted));
+}
+.s-chart-key:is(.s-chart-e-review, .s-chart-e-fail) {
+  border-block-start-style: dashed;
+}
+
+/* The text version of the drawing, for screen readers. */
+.s-visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

@@ -1,0 +1,25 @@
+{
+  "name": "folio",
+  "private": true,
+  "description": "Folio's public packages, starter sites and example bundles",
+  "license": "MIT",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "typecheck": "npm run typecheck --workspaces",
+    "test": "npm test --workspaces",
+    "check": "node scripts/check-repo.mjs && npm run check --workspaces"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsup": "^8.5.0",
+    "typescript": "~6.0.3",
+    "vitest": "^5.0.5"
+  }
+}

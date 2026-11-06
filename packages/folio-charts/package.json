@@ -1,0 +1,64 @@
+{
+  "name": "@upax-ai/folio-charts",
+  "version": "0.1.0",
+  "description": "Charts in Folio documents: a strict source grammar, checks, and an inline-SVG renderer with no runtime dependencies",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./charts.css": "./src/charts.css",
+    "./corpus/*": "./corpus/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src/charts.css",
+    "corpus",
+    "GRAMMAR.md",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check": "npm run typecheck && npm test && npm run build && node scripts/check-package.mjs && node scripts/check-consumer.mjs",
+    "prepack": "npm run build",
+    "prepublishOnly": "npm run check"
+  },
+  "devDependencies": {
+    "yaml": "2.9.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UPAX-platform/folio.git",
+    "directory": "packages/folio-charts"
+  },
+  "homepage": "https://github.com/UPAX-platform/folio/tree/main/packages/folio-charts#readme",
+  "bugs": {
+    "url": "https://github.com/UPAX-platform/folio/issues"
+  }
+}

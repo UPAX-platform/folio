@@ -1,0 +1,3927 @@
+[
+ {
+  "name": "empty source",
+  "source": "",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "empty",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "only comments",
+  "source": "# a\n\n# b",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "empty",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "tab as indent",
+  "source": "caption: c\nnodes:\n\t- { id: a, label: A }",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "tab",
+    "line": 3
+   }
+  ]
+ },
+ {
+  "name": "tab in a label",
+  "source": "caption: a\tb\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "tab",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "tab in a comment",
+  "source": "caption: c # a\tb\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "tab",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "carriage return",
+  "source": "caption: c\r\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "control_char",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "nel",
+  "source": "caption: c\nnodes: [{ id: a, label: A }, { id: b, label: B }]\nedges:\n  - a -> b: xy",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "control_char",
+    "line": 4
+   }
+  ]
+ },
+ {
+  "name": "line separator",
+  "source": "caption: x y\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "control_char",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "byte order mark",
+  "source": "﻿caption: c\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "control_char",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "delete",
+  "source": "caption: x\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "control_char",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "anchor",
+  "source": "caption: &x c\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "anchor",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "alias",
+  "source": "caption: *x\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "anchor",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "anchor in flow",
+  "source": "caption: c\nnodes: [{ id: a, label: &x A }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "anchor",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "anchor on an item",
+  "source": "caption: c\nnodes:\n  - &n { id: a, label: A }",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "anchor",
+    "line": 3
+   }
+  ]
+ },
+ {
+  "name": "alias as an item",
+  "source": "caption: c\nnodes:\n  - { id: a, label: A }\n  - *n",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "anchor",
+    "line": 4
+   }
+  ]
+ },
+ {
+  "name": "merge key from an alias",
+  "source": "caption: c\nnodes:\n  - { <<: *n, id: a }",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "anchor",
+    "line": 3
+   }
+  ]
+ },
+ {
+  "name": "tag",
+  "source": "caption: !!str c\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "tag",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "tag in flow",
+  "source": "caption: c\nnodes: [{ id: !x a, label: A }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "tag",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "literal block scalar",
+  "source": "caption: |\n  text\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "block_scalar",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "folded block scalar",
+  "source": "caption: >-\n  text\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "block_scalar",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "block scalar in flow",
+  "source": "caption: c\nnodes: [{ id: a, label: | }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "block_scalar",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "duplicate top-level key",
+  "source": "caption: a\nnodes: [{ id: a, label: A }, { id: b, label: B }]\ncaption: b",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "duplicate_key",
+    "line": 3
+   }
+  ]
+ },
+ {
+  "name": "duplicate flow key",
+  "source": "caption: c\nnodes: [{ id: a, id: b, label: A }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "duplicate_key",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "duplicate legend key, block",
+  "source": "caption: c\nlegend:\n  fail: A\n  fail: B\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "duplicate_key",
+    "line": 4
+   }
+  ]
+ },
+ {
+  "name": "duplicate legend key, flow",
+  "source": "caption: c\nlegend: { fail: A, fail: B }\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "duplicate_key",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "document start",
+  "source": "---\ncaption: c\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "document_marker",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "second document",
+  "source": "caption: c\nnodes: [{ id: a, label: A }, { id: b, label: B }]\n---\ncaption: d",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "document_marker",
+    "line": 3
+   }
+  ]
+ },
+ {
+  "name": "document end",
+  "source": "caption: c\nnodes: [{ id: a, label: A }, { id: b, label: B }]\n...",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "document_marker",
+    "line": 3
+   }
+  ]
+ },
+ {
+  "name": "directive",
+  "source": "%YAML 1.2\ncaption: c",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "document_marker",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "multi-line mapping as an item",
+  "source": "caption: c\nnodes:\n  - id: a\n    label: A",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "item_mapping",
+    "line": 3
+   }
+  ]
+ },
+ {
+  "name": "one-line mapping as an item",
+  "source": "caption: c\nnodes:\n  - id: a",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "item_mapping",
+    "line": 3
+   }
+  ]
+ },
+ {
+  "name": "mapping after a bare dash",
+  "source": "caption: c\nnodes:\n  -\n    id: a\n    label: A",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "item_empty",
+    "line": 3
+   }
+  ]
+ },
+ {
+  "name": "bare dash with a comment",
+  "source": "caption: c\nnodes:\n  - # nothing",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "item_empty",
+    "line": 3
+   }
+  ]
+ },
+ {
+  "name": "sequence in a sequence",
+  "source": "caption: c\nnodes:\n  - - a",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "indicator",
+    "line": 3
+   }
+  ]
+ },
+ {
+  "name": "pair in a flow list without an arrow",
+  "source": "caption: c\nnodes: [id: a]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "item_mapping",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "multi-line flow list",
+  "source": "caption: c\nnodes: [\n  { id: a, label: A }\n]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "unterminated",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "multi-line flow mapping",
+  "source": "caption: c\nnodes:\n  - { id: a,\n      label: A }",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "unterminated",
+    "line": 3
+   }
+  ]
+ },
+ {
+  "name": "multi-line plain scalar",
+  "source": "caption: a\n  b\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "indent",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "value on the next line",
+  "source": "caption:\n  text\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "key",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "multi-line double-quoted",
+  "source": "caption: \"a\n  b\"\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "unterminated",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "multi-line single-quoted",
+  "source": "caption: 'a\n  b'\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "unterminated",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "unquoted integer",
+  "source": "caption: 10\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "not_string",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "unquoted null word",
+  "source": "caption: null\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "not_string",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "unquoted tilde",
+  "source": "caption: ~\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "not_string",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "unquoted exponent",
+  "source": "caption: 1e3\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "not_string",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "unquoted float",
+  "source": "caption: 1.5\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "not_string",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "unquoted leading-dot float",
+  "source": "caption: .5\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "not_string",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "unquoted plus",
+  "source": "caption: +1\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "not_string",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "unquoted hex",
+  "source": "caption: 0x10\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "not_string",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "unquoted octal",
+  "source": "caption: 0o7\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "not_string",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "unquoted infinity",
+  "source": "caption: .inf\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "not_string",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "unquoted nan",
+  "source": "caption: .NaN\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "not_string",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "unquoted bool as a label",
+  "source": "caption: true\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "not_string",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "capital bool",
+  "source": "caption: c\nnodes: [{ id: a, label: A, start: True }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "not_string",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "number as a flow label",
+  "source": "caption: c\nnodes: [{ id: a, label: 10 }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "not_string",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "number as an id",
+  "source": "caption: c\nnodes: [{ id: 10, label: A }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "not_string",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "number as a shorthand label",
+  "source": "caption: c\nnodes:\n  - { id: a, label: A }\n  - { id: b, label: B }\nedges:\n  - a -> b: 10",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "not_string",
+    "line": 6
+   }
+  ]
+ },
+ {
+  "name": "bool as a shorthand label",
+  "source": "caption: c\nnodes:\n  - { id: a, label: A }\n  - { id: b, label: B }\nedges:\n  - a -> b: true",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "not_string",
+    "line": 6
+   }
+  ]
+ },
+ {
+  "name": "number in a tone list",
+  "source": "caption: c\nnodes:\n  - { id: a, label: A }\n  - { id: b, label: B }\nedges:\n  - a -> b: [10]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "not_string",
+    "line": 6
+   }
+  ]
+ },
+ {
+  "name": "non-string flow key",
+  "source": "caption: c\nnodes: [{ 10: x }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "not_string",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "non-string block key",
+  "source": "caption: c\nnull: x",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "not_string",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "start with a number",
+  "source": "caption: c\nnodes: [{ id: a, label: A, start: 1 }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "not_string",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "explicit key indicator",
+  "source": "caption: ? x\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "indicator",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "explicit key in flow",
+  "source": "caption: c\nnodes: [{ ? id: a }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "indicator",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "leading question mark",
+  "source": "caption: ?x\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "indicator",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "negative number",
+  "source": "caption: -1\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "indicator",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "leading dash",
+  "source": "caption: -x\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "indicator",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "leading at",
+  "source": "caption: @x\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "indicator",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "leading backtick",
+  "source": "caption: `x\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "indicator",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "leading percent",
+  "source": "caption: %x\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "indicator",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "leading colon",
+  "source": "caption: :x\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "indicator",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "leading comma in a list",
+  "source": "caption: c\nnodes: [,]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "indicator",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "colon and space in a plain value",
+  "source": "caption: a: b\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "plain_colon",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "value ending in a colon",
+  "source": "caption: a:\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "plain_colon",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "colon and space in a shorthand label",
+  "source": "caption: c\nnodes:\n  - { id: a, label: A }\n  - { id: b, label: B }\nedges:\n  - a -> b: x: y",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "plain_colon",
+    "line": 6
+   }
+  ]
+ },
+ {
+  "name": "colon and space in a flow label",
+  "source": "caption: c\nnodes: [{ id: a, label: x: y }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "plain_colon",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "content after a closing quote",
+  "source": "caption: \"a\" b\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "trailing",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "content after a flow value",
+  "source": "caption: c\nnodes: [] x",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "trailing",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "comment touching a flow value",
+  "source": "caption: c\nnodes: []#x",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "trailing",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "comment touching a quote",
+  "source": "caption: \"c\"#x\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "trailing",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "bracket after plain flow text",
+  "source": "caption: c\nnodes: [{ id: a, label: x [y] }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "trailing",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "quoted key at the top",
+  "source": "\"caption\": c\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "key",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "quoted key in flow",
+  "source": "caption: c\nnodes: [{ \"id\": a, label: A }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "quoted_key",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "quoted shorthand key",
+  "source": "caption: c\nnodes:\n  - { id: a, label: A }\n  - { id: b, label: B }\nedges:\n  - \"a -> b\": x",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "trailing",
+    "line": 6
+   }
+  ]
+ },
+ {
+  "name": "trailing comma in a list",
+  "source": "caption: c\nnodes: [{ id: a, label: A }, ]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "flow_comma",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "trailing comma in a mapping",
+  "source": "caption: c\nnodes: [{ id: a, label: A, }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "flow_comma",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "two commas",
+  "source": "caption: c\nnodes: [{ id: a, label: A }, , { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "flow_comma",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "comment inside flow",
+  "source": "caption: c\nnodes: [{ id: a, label: A # no }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "unterminated",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "too deep",
+  "source": "caption: c\nedges: [[[[a]]]]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "flow_depth",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "unsupported escape: newline",
+  "source": "caption: \"a\\nb\"\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "escape",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "unsupported escape: unicode",
+  "source": "caption: \"\\u0041\"\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "escape",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "unsupported escape: tab",
+  "source": "caption: \"a\\tb\"\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "escape",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "unterminated double quote",
+  "source": "caption: \"a\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "unterminated",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "unterminated flow",
+  "source": "caption: c\nnodes: [{ id: a, label: A }",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "unterminated",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "indented first key",
+  "source": "  caption: c\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "indent",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "items at uneven indents",
+  "source": "caption: c\nnodes:\n  - { id: a, label: A }\n    - { id: b, label: B }",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "indent",
+    "line": 4
+   }
+  ]
+ },
+ {
+  "name": "item shallower than the first",
+  "source": "caption: c\nnodes:\n    - { id: a, label: A }\n  - { id: b, label: B }",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "indent",
+    "line": 4
+   }
+  ]
+ },
+ {
+  "name": "body after an inline value",
+  "source": "caption: c\nnodes: []\n  - { id: a, label: A }",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "indent",
+    "line": 3
+   }
+  ]
+ },
+ {
+  "name": "nested block legend",
+  "source": "caption: c\nlegend:\n  fail: A\n    deep: B\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "indent",
+    "line": 4
+   }
+  ]
+ },
+ {
+  "name": "items at the key indent",
+  "source": "caption: c\nnodes:\n- { id: a, label: A }",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "key",
+    "line": 3
+   }
+  ]
+ },
+ {
+  "name": "key after items in a body",
+  "source": "caption: c\nnodes:\n  - { id: a, label: A }\n  foo: bar",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "item_mapping",
+    "line": 4
+   }
+  ]
+ },
+ {
+  "name": "item after keys in a body",
+  "source": "caption: c\nlegend:\n  fail: A\n  - x\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "key",
+    "line": 4
+   }
+  ]
+ },
+ {
+  "name": "scalar as a document",
+  "source": "just text",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "key",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "key with a space",
+  "source": "my key: x",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "key",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "space before the colon",
+  "source": "caption : c\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "key",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "numeric key",
+  "source": "10: x",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "key",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "no space after the colon",
+  "source": "caption:c\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "source_syntax",
+    "subject": "key",
+    "line": 1
+   }
+  ]
+ },
+ {
+  "name": "unknown key",
+  "source": "caption: c\nnodes: [{ id: a, label: A }, { id: b, label: B }]\nfoo: bar",
+  "problems": [
+   {
+    "rule": "unknown_key",
+    "subject": "foo",
+    "line": 3
+   }
+  ]
+ },
+ {
+  "name": "proto key",
+  "source": "caption: c\nnodes: [{ id: a, label: A }, { id: b, label: B }]\n__proto__: x",
+  "problems": [
+   {
+    "rule": "unknown_key",
+    "subject": "__proto__",
+    "line": 3
+   }
+  ]
+ },
+ {
+  "name": "comma in an unquoted label",
+  "source": "caption: c\nnodes: [{ id: a, label: Read, Update }]",
+  "problems": [
+   {
+    "rule": "unknown_key",
+    "subject": "Update",
+    "line": 2
+   }
+  ]
+ },
+ {
+  "name": "all unknown keys, in order",
+  "source": "zed: a\ncaption: c\ngroups:\n  - { id: g, label: G, x: 1a }\nnodes:\n  - { id: a, label: A, group: g, y: 2b }\nedges:\n  - { from: a, to: a, z: 3c }\nyak: b",
+  "problems": [
+   {
+    "rule": "unknown_key",
+    "subject": "zed",
+    "line": 1
+   },
+   {
+    "rule": "unknown_key",
+    "subject": "yak",
+    "line": 9
+   },
+   {
+    "rule": "unknown_key",
+    "subject": "x",
+    "line": 4
+   },
+   {
+    "rule": "unknown_key",
+    "subject": "y",
+    "line": 6
+   },
+   {
+    "rule": "unknown_key",
+    "subject": "z",
+    "line": 8
+   }
+  ]
+ },
+ {
+  "name": "edge: not the form",
+  "source": "caption: c\nnodes:\n  - { id: a, label: A }\n  - { id: b, label: B }\nedges:\n  - a to b",
+  "problems": [
+   {
+    "rule": "edge_form",
+    "subject": "a to b",
+    "line": 6
+   }
+  ]
+ },
+ {
+  "name": "edge: capital id",
+  "source": "caption: c\nnodes:\n  - { id: a, label: A }\n  - { id: b, label: B }\nedges:\n  - A -> b: x",
+  "problems": [
+   {
+    "rule": "edge_form",
+    "subject": "A -> b: x",
+    "line": 6
+   }
+  ]
+ },
+ {
+  "name": "edge: id with a dot",
+  "source": "caption: c\nnodes:\n  - { id: a, label: A }\n  - { id: b, label: B }\nedges:\n  - a.b -> b",
+  "problems": [
+   {
+    "rule": "edge_form",
+    "subject": "a.b -> b",
+    "line": 6
+   }
+  ]
+ },
+ {
+  "name": "edge: two tones",
+  "source": "caption: c\nnodes:\n  - { id: a, label: A }\n  - { id: b, label: B }\nedges:\n  - a -> b: [review, fail]",
+  "problems": [
+   {
+    "rule": "edge_form",
+    "subject": "a -> b",
+    "line": 6
+   }
+  ]
+ },
+ {
+  "name": "edge: empty tone list",
+  "source": "caption: c\nnodes:\n  - { id: a, label: A }\n  - { id: b, label: B }\nedges:\n  - a -> b: []",
+  "problems": [
+   {
+    "rule": "edge_form",
+    "subject": "a -> b",
+    "line": 6
+   }
+  ]
+ },
+ {
+  "name": "edge: capital tone in a list",
+  "source": "caption: c\nnodes:\n  - { id: a, label: A }\n  - { id: b, label: B }\nedges:\n  - a -> b: [Fail]",
+  "problems": [
+   {
+    "rule": "edge_form",
+    "subject": "a -> b [Fail]",
+    "line": 6
+   }
+  ]
+ },
+ {
+  "name": "edge: mapping as the value",
+  "source": "caption: c\nnodes:\n  - { id: a, label: A }\n  - { id: b, label: B }\nedges:\n  - a -> b: { x: y }",
+  "problems": [
+   {
+    "rule": "edge_form",
+    "subject": "a -> b",
+    "line": 6
+   }
+  ]
+ },
+ {
+  "name": "edge: object with no ends",
+  "source": "caption: c\nnodes:\n  - { id: a, label: A }\n  - { id: b, label: B }\nedges:\n  - { from: a }",
+  "problems": [
+   {
+    "rule": "edge_form",
+    "subject": "edges[0]",
+    "line": 6
+   }
+  ]
+ },
+ {
+  "name": "edge: a list",
+  "source": "caption: c\nnodes: [{ id: a, label: A }, { id: b, label: B }]\nedges: [[a]]",
+  "problems": [
+   {
+    "rule": "edge_form",
+    "subject": "edges[0]",
+    "line": 3
+   }
+  ]
+ },
+ {
+  "name": "edge: every bad one, with its line",
+  "source": "caption: c\nnodes:\n  - { id: a, label: A }\n  - { id: b, label: B }\nedges:\n  - a to b\n  - a -> b\n  - c to d",
+  "problems": [
+   {
+    "rule": "edge_form",
+    "subject": "a to b",
+    "line": 6
+   },
+   {
+    "rule": "edge_form",
+    "subject": "c to d",
+    "line": 8
+   }
+  ]
+ },
+ {
+  "name": "label_required: no caption",
+  "source": "nodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "label_required",
+    "subject": "caption"
+   }
+  ]
+ },
+ {
+  "name": "label_required: empty caption",
+  "source": "caption:\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "label_required",
+    "subject": "caption"
+   }
+  ]
+ },
+ {
+  "name": "label_required: blank caption",
+  "source": "caption: \"   \"\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "label_required",
+    "subject": "caption"
+   }
+  ]
+ },
+ {
+  "name": "label_required: only unicode space",
+  "source": "caption: \" 　\"\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "label_required",
+    "subject": "caption"
+   }
+  ]
+ },
+ {
+  "name": "label_required: list as a caption",
+  "source": "caption: [a]\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "label_required",
+    "subject": "caption"
+   }
+  ]
+ },
+ {
+  "name": "label_required: node",
+  "source": "caption: c\nnodes: [{ id: a }]",
+  "problems": [
+   {
+    "rule": "label_required",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "label_required: group",
+  "source": "caption: c\ngroups: [{ id: g }]\nnodes: [{ id: a, label: A, group: g }]",
+  "problems": [
+   {
+    "rule": "label_required",
+    "subject": "g"
+   }
+  ]
+ },
+ {
+  "name": "label_required: legend",
+  "source": "caption: c\nlegend: { fail: }\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "label_required",
+    "subject": "fail"
+   }
+  ]
+ },
+ {
+  "name": "id_invalid: capital",
+  "source": "caption: c\nnodes: [{ id: Abc, label: A }]",
+  "problems": [
+   {
+    "rule": "id_invalid",
+    "subject": "Abc"
+   }
+  ]
+ },
+ {
+  "name": "id_invalid: leading digit",
+  "source": "caption: c\nnodes: [{ id: 1a, label: A }]",
+  "problems": [
+   {
+    "rule": "id_invalid",
+    "subject": "1a"
+   }
+  ]
+ },
+ {
+  "name": "id_invalid: unicode",
+  "source": "caption: c\nnodes: [{ id: مرحبا, label: A }]",
+  "problems": [
+   {
+    "rule": "id_invalid",
+    "subject": "مرحبا"
+   }
+  ]
+ },
+ {
+  "name": "id_invalid: missing",
+  "source": "caption: c\nnodes: [{ label: A }]",
+  "problems": [
+   {
+    "rule": "id_invalid",
+    "subject": "nodes[0]"
+   }
+  ]
+ },
+ {
+  "name": "id_invalid: group",
+  "source": "caption: c\ngroups: [{ id: G, label: L }]\nnodes: [{ id: a, label: A }]",
+  "problems": [
+   {
+    "rule": "id_invalid",
+    "subject": "G"
+   },
+   {
+    "rule": "group_empty",
+    "subject": "G"
+   }
+  ]
+ },
+ {
+  "name": "id_duplicate: node",
+  "source": "caption: c\nnodes: [{ id: a, label: A }, { id: a, label: B }]",
+  "problems": [
+   {
+    "rule": "id_duplicate",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "id_duplicate: group",
+  "source": "caption: c\ngroups: [{ id: g, label: A }, { id: g, label: B }]\nnodes: [{ id: a, label: A, group: g }]",
+  "problems": [
+   {
+    "rule": "id_duplicate",
+    "subject": "g"
+   }
+  ]
+ },
+ {
+  "name": "a node and a group may share an id",
+  "source": "caption: c\ngroups: [{ id: a, label: A }]\nnodes: [{ id: a, label: A }]",
+  "problems": [
+   {
+    "rule": "group_empty",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "nodes_required: absent",
+  "source": "caption: c",
+  "problems": [
+   {
+    "rule": "nodes_required",
+    "subject": "nodes"
+   }
+  ]
+ },
+ {
+  "name": "nodes_required: empty value",
+  "source": "caption: c\nnodes:",
+  "problems": [
+   {
+    "rule": "nodes_required",
+    "subject": "nodes"
+   }
+  ]
+ },
+ {
+  "name": "nodes_required: empty list",
+  "source": "caption: c\nnodes: []",
+  "problems": [
+   {
+    "rule": "nodes_required",
+    "subject": "nodes"
+   }
+  ]
+ },
+ {
+  "name": "nodes_required: a mapping",
+  "source": "caption: c\nnodes: { id: a }",
+  "problems": [
+   {
+    "rule": "nodes_required",
+    "subject": "nodes"
+   }
+  ]
+ },
+ {
+  "name": "group_unknown",
+  "source": "caption: c\nnodes: [{ id: a, label: A, group: g }]",
+  "problems": [
+   {
+    "rule": "group_unknown",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "group_empty",
+  "source": "caption: c\ngroups: [{ id: g, label: G }]\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "group_empty",
+    "subject": "g"
+   }
+  ]
+ },
+ {
+  "name": "edge_unknown_node",
+  "source": "caption: c\nnodes: [{ id: a, label: A }, { id: b, label: B }]\nedges: [a -> z]",
+  "problems": [
+   {
+    "rule": "edge_unknown_node",
+    "subject": "a -> z"
+   }
+  ]
+ },
+ {
+  "name": "edge_unknown_node: both ends, one finding",
+  "source": "caption: c\nnodes: [{ id: a, label: A }, { id: b, label: B }]\nedges: [y -> z]",
+  "problems": [
+   {
+    "rule": "edge_unknown_node",
+    "subject": "y -> z"
+   }
+  ]
+ },
+ {
+  "name": "edge_self_loop",
+  "source": "caption: c\nnodes: [{ id: a, label: A }, { id: b, label: B }]\nedges: [a -> a]",
+  "problems": [
+   {
+    "rule": "edge_self_loop",
+    "subject": "a -> a"
+   }
+  ]
+ },
+ {
+  "name": "edge_duplicate",
+  "source": "caption: c\nnodes: [{ id: a, label: A }, { id: b, label: B }]\nedges: [a -> b, a -> b: again]",
+  "problems": [
+   {
+    "rule": "edge_duplicate",
+    "subject": "a -> b"
+   }
+  ]
+ },
+ {
+  "name": "the reverse edge is not a duplicate",
+  "source": "caption: c\nnodes: [{ id: a, label: A }, { id: b, label: B }]\nedges: [a -> b, b -> a, a -> a]",
+  "problems": [
+   {
+    "rule": "edge_self_loop",
+    "subject": "a -> a"
+   }
+  ]
+ },
+ {
+  "name": "value_not_allowed: type",
+  "source": "type: pie\ncaption: c\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "type"
+   }
+  ]
+ },
+ {
+  "name": "value_not_allowed: empty type",
+  "source": "type:\ncaption: c\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "type"
+   }
+  ]
+ },
+ {
+  "name": "value_not_allowed: direction",
+  "source": "direction: up\ncaption: c\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "direction"
+   }
+  ]
+ },
+ {
+  "name": "value_not_allowed: node tone",
+  "source": "caption: c\nnodes: [{ id: a, label: A, tone: pink }]",
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "value_not_allowed: empty node tone",
+  "source": "caption: c\nnodes: [{ id: a, label: A, tone: }]",
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "value_not_allowed: node shape",
+  "source": "caption: c\nnodes: [{ id: a, label: A, shape: hex }]",
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "value_not_allowed: start is a word",
+  "source": "caption: c\nnodes: [{ id: a, label: A, start: yes }]",
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "value_not_allowed: start is quoted",
+  "source": "caption: c\nnodes: [{ id: a, label: A, start: \"true\" }]",
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "value_not_allowed: empty start",
+  "source": "caption: c\nnodes: [{ id: a, label: A, start: }]",
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "value_not_allowed: empty group",
+  "source": "caption: c\nnodes: [{ id: a, label: A, group: }]",
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "value_not_allowed: edge tone",
+  "source": "caption: c\nnodes:\n  - { id: a, label: A }\n  - { id: b, label: B }\nedges:\n  - a -> b: x [green]",
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a -> b"
+   }
+  ]
+ },
+ {
+  "name": "value_not_allowed: empty object-edge label",
+  "source": "caption: c\nnodes:\n  - { id: a, label: A }\n  - { id: b, label: B }\nedges:\n  - { from: a, to: b, label: }",
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a -> b"
+   }
+  ]
+ },
+ {
+  "name": "value_not_allowed: legend key",
+  "source": "caption: c\nlegend: { pink: P }\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "legend"
+   }
+  ]
+ },
+ {
+  "name": "value_not_allowed: legend as a list",
+  "source": "caption: c\nlegend: [fail]\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "legend"
+   }
+  ]
+ },
+ {
+  "name": "value_not_allowed: list-form legend of mappings",
+  "source": "caption: c\nlegend:\n  - { tone: fail, label: F }\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "legend"
+   }
+  ]
+ },
+ {
+  "name": "value_not_allowed: groups is a scalar",
+  "source": "caption: c\ngroups: x\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "groups"
+   }
+  ]
+ },
+ {
+  "name": "value_not_allowed: edges is a scalar",
+  "source": "caption: c\nnodes: [{ id: a, label: A }, { id: b, label: B }]\nedges: x",
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "edges"
+   }
+  ]
+ },
+ {
+  "name": "value_not_allowed: a node that is a string",
+  "source": "caption: c\nnodes:\n  - a",
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "nodes[0]"
+   }
+  ]
+ },
+ {
+  "name": "value_not_allowed: a group that is a string",
+  "source": "caption: c\ngroups: [g]\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "groups[0]"
+   }
+  ]
+ },
+ {
+  "name": "too_large: source",
+  "source": "caption: c\nnodes: [{ id: a, label: A }, { id: b, label: B }]\n# xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "problems": [
+   {
+    "rule": "too_large",
+    "subject": "source"
+   }
+  ]
+ },
+ {
+  "name": "too_large: caption",
+  "source": "caption: ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "too_large",
+    "subject": "caption"
+   }
+  ]
+ },
+ {
+  "name": "too_large: caption in bytes",
+  "source": "caption: ععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععع\nnodes: [{ id: a, label: A }, { id: b, label: B }]",
+  "problems": [
+   {
+    "rule": "too_large",
+    "subject": "caption"
+   }
+  ]
+ },
+ {
+  "name": "too_large: label",
+  "source": "caption: c\nnodes: [{ id: a, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }]",
+  "problems": [
+   {
+    "rule": "too_large",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "too_large: label in bytes",
+  "source": "caption: c\nnodes: [{ id: a, label: ععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععععع }]",
+  "problems": [
+   {
+    "rule": "too_large",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "too_large: edge label",
+  "source": "caption: c\nnodes:\n  - { id: a, label: A }\n  - { id: b, label: B }\nedges:\n  - a -> b: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+  "problems": [
+   {
+    "rule": "too_large",
+    "subject": "a -> b"
+   }
+  ]
+ },
+ {
+  "name": "too_large: id",
+  "source": "caption: c\nnodes: [{ id: iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii, label: A }]",
+  "problems": [
+   {
+    "rule": "too_large",
+    "subject": "nodes[0]"
+   }
+  ]
+ },
+ {
+  "name": "too_large: nodes",
+  "source": "caption: c\nnodes:\n  - { id: n0, label: N }\n  - { id: n1, label: N }\n  - { id: n2, label: N }\n  - { id: n3, label: N }\n  - { id: n4, label: N }\n  - { id: n5, label: N }\n  - { id: n6, label: N }\n  - { id: n7, label: N }\n  - { id: n8, label: N }\n  - { id: n9, label: N }\n  - { id: n10, label: N }\n  - { id: n11, label: N }\n  - { id: n12, label: N }\n  - { id: n13, label: N }\n  - { id: n14, label: N }\n  - { id: n15, label: N }\n  - { id: n16, label: N }\n  - { id: n17, label: N }\n  - { id: n18, label: N }\n  - { id: n19, label: N }\n  - { id: n20, label: N }\n  - { id: n21, label: N }\n  - { id: n22, label: N }\n  - { id: n23, label: N }\n  - { id: n24, label: N }\n  - { id: n25, label: N }\n  - { id: n26, label: N }\n  - { id: n27, label: N }\n  - { id: n28, label: N }\n  - { id: n29, label: N }\n  - { id: n30, label: N }\n  - { id: n31, label: N }\n  - { id: n32, label: N }\n  - { id: n33, label: N }\n  - { id: n34, label: N }\n  - { id: n35, label: N }\n  - { id: n36, label: N }\n  - { id: n37, label: N }\n  - { id: n38, label: N }\n  - { id: n39, label: N }\n  - { id: n40, label: N }",
+  "problems": [
+   {
+    "rule": "too_large",
+    "subject": "nodes"
+   }
+  ]
+ },
+ {
+  "name": "too_large: edges",
+  "source": "caption: c\nnodes:\n  - { id: n0, label: N }\n  - { id: n1, label: N }\n  - { id: n2, label: N }\n  - { id: n3, label: N }\n  - { id: n4, label: N }\n  - { id: n5, label: N }\n  - { id: n6, label: N }\n  - { id: n7, label: N }\n  - { id: n8, label: N }\n  - { id: n9, label: N }\nedges:\n  - n0 -> n1\n  - n1 -> n3\n  - n2 -> n5\n  - n3 -> n7\n  - n4 -> n9\n  - n5 -> n1\n  - n6 -> n3\n  - n7 -> n5\n  - n8 -> n7\n  - n9 -> n0\n  - n0 -> n2\n  - n1 -> n4\n  - n2 -> n6\n  - n3 -> n8\n  - n4 -> n0\n  - n5 -> n2\n  - n6 -> n4\n  - n7 -> n6\n  - n8 -> n9\n  - n9 -> n1\n  - n0 -> n3\n  - n1 -> n5\n  - n2 -> n7\n  - n3 -> n9\n  - n4 -> n1\n  - n5 -> n3\n  - n6 -> n5\n  - n7 -> n8\n  - n8 -> n0\n  - n9 -> n2\n  - n0 -> n4\n  - n1 -> n6\n  - n2 -> n8\n  - n3 -> n0\n  - n4 -> n2\n  - n5 -> n4\n  - n6 -> n7\n  - n7 -> n9\n  - n8 -> n1\n  - n9 -> n3\n  - n0 -> n5\n  - n1 -> n7\n  - n2 -> n9\n  - n3 -> n1\n  - n4 -> n3\n  - n5 -> n6\n  - n6 -> n8\n  - n7 -> n0\n  - n8 -> n2\n  - n9 -> n4\n  - n0 -> n6\n  - n1 -> n8\n  - n2 -> n0\n  - n3 -> n2\n  - n4 -> n5\n  - n5 -> n7\n  - n6 -> n9\n  - n7 -> n1\n  - n8 -> n3\n  - n9 -> n5\n  - n0 -> n7\n  - n1 -> n9\n  - n2 -> n1\n  - n3 -> n4\n  - n4 -> n6\n  - n5 -> n8\n  - n6 -> n0\n  - n7 -> n2\n  - n8 -> n4\n  - n9 -> n6\n  - n0 -> n8\n  - n1 -> n0\n  - n2 -> n3\n  - n3 -> n5\n  - n4 -> n7\n  - n5 -> n9\n  - n6 -> n1\n  - n7 -> n3\n  - n8 -> n5\n  - n9 -> n7\n  - n0 -> n9",
+  "problems": [
+   {
+    "rule": "too_large",
+    "subject": "edges"
+   }
+  ]
+ },
+ {
+  "name": "too_large: groups",
+  "source": "caption: c\ngroups:\n  - { id: g0, label: G }\n  - { id: g1, label: G }\n  - { id: g2, label: G }\n  - { id: g3, label: G }\n  - { id: g4, label: G }\n  - { id: g5, label: G }\n  - { id: g6, label: G }\n  - { id: g7, label: G }\n  - { id: g8, label: G }\n  - { id: g9, label: G }\n  - { id: g10, label: G }\n  - { id: g11, label: G }\n  - { id: g12, label: G }\nnodes:\n  - { id: n0, label: N, group: g0 }\n  - { id: n1, label: N, group: g1 }\n  - { id: n2, label: N, group: g2 }\n  - { id: n3, label: N, group: g3 }\n  - { id: n4, label: N, group: g4 }\n  - { id: n5, label: N, group: g5 }\n  - { id: n6, label: N, group: g6 }\n  - { id: n7, label: N, group: g7 }\n  - { id: n8, label: N, group: g8 }\n  - { id: n9, label: N, group: g9 }\n  - { id: n10, label: N, group: g10 }\n  - { id: n11, label: N, group: g11 }\n  - { id: n12, label: N, group: g12 }",
+  "problems": [
+   {
+    "rule": "too_large",
+    "subject": "groups"
+   }
+  ]
+ },
+ {
+  "name": "too_large: canonical JSON one byte over",
+  "source": "caption: ccccccccccccccccccccccccccccccccccccccccccccccccc\nnodes:\n  - { id: n0, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n1, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n2, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n3, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n4, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n5, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n6, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n7, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n8, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n9, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n10, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n11, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n12, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n13, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n14, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n15, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n16, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n17, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n18, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n19, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n20, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n21, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n22, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n23, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n24, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n25, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n26, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n27, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n28, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n29, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n30, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n31, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n32, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n33, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n34, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n35, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n36, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n37, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n38, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\n  - { id: n39, label: LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL }\nedges:\n  - n0 -> n1: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n1 -> n2: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n2 -> n3: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n3 -> n4: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n4 -> n5: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n5 -> n6: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n6 -> n7: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n7 -> n8: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n8 -> n9: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n9 -> n10: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n10 -> n11: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n11 -> n12: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n12 -> n13: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n13 -> n14: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n14 -> n15: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n15 -> n16: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n16 -> n17: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n17 -> n18: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n18 -> n19: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n19 -> n20: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n20 -> n21: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n21 -> n22: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n22 -> n23: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n23 -> n24: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n24 -> n25: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n25 -> n26: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n26 -> n27: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n27 -> n28: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n28 -> n29: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n29 -> n30: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n30 -> n31: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n31 -> n32: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n32 -> n33: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n33 -> n34: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n34 -> n35: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n35 -> n36: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n36 -> n37: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n37 -> n38: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n38 -> n39: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n0 -> n2: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n1 -> n3: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n2 -> n4: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n3 -> n5: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n4 -> n6: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n5 -> n7: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n6 -> n8: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n7 -> n9: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n8 -> n10: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n9 -> n11: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n10 -> n12: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n11 -> n13: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n12 -> n14: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n13 -> n15: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n14 -> n16: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n15 -> n17: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n16 -> n18: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n17 -> n19: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n18 -> n20: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n19 -> n21: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n20 -> n22: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n21 -> n23: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n22 -> n24: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n23 -> n25: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n24 -> n26: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n25 -> n27: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n26 -> n28: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n27 -> n29: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n28 -> n30: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n29 -> n31: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n30 -> n32: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n31 -> n33: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n32 -> n34: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n33 -> n35: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n34 -> n36: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n35 -> n37: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n36 -> n38: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n37 -> n39: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n0 -> n3: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n1 -> n4: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n  - n2 -> n5: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE",
+  "problems": [
+   {
+    "rule": "too_large",
+    "subject": "chart"
+   }
+  ]
+ },
+ {
+  "name": "several rules, in order",
+  "source": "type: pie\ndirection: up\nlegend: { pink: P, fail: }\ngroups: [{ id: G }, { id: empty, label: E }]\nnodes:\n  - { id: B, tone: x, shape: y, group: z, start: yes }\n  - { id: dup, label: D }\n  - { id: dup, label: D }\nedges:\n  - dup -> dup: [nope]\n  - dup -> dup\n  - dup -> gone",
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "type"
+   },
+   {
+    "rule": "value_not_allowed",
+    "subject": "direction"
+   },
+   {
+    "rule": "label_required",
+    "subject": "caption"
+   },
+   {
+    "rule": "value_not_allowed",
+    "subject": "legend"
+   },
+   {
+    "rule": "label_required",
+    "subject": "fail"
+   },
+   {
+    "rule": "id_invalid",
+    "subject": "G"
+   },
+   {
+    "rule": "label_required",
+    "subject": "G"
+   },
+   {
+    "rule": "id_invalid",
+    "subject": "B"
+   },
+   {
+    "rule": "label_required",
+    "subject": "B"
+   },
+   {
+    "rule": "value_not_allowed",
+    "subject": "B"
+   },
+   {
+    "rule": "value_not_allowed",
+    "subject": "B"
+   },
+   {
+    "rule": "group_unknown",
+    "subject": "B"
+   },
+   {
+    "rule": "value_not_allowed",
+    "subject": "B"
+   },
+   {
+    "rule": "id_duplicate",
+    "subject": "dup"
+   },
+   {
+    "rule": "edge_self_loop",
+    "subject": "dup -> dup"
+   },
+   {
+    "rule": "value_not_allowed",
+    "subject": "dup -> dup"
+   },
+   {
+    "rule": "edge_self_loop",
+    "subject": "dup -> dup"
+   },
+   {
+    "rule": "edge_duplicate",
+    "subject": "dup -> dup"
+   },
+   {
+    "rule": "edge_unknown_node",
+    "subject": "dup -> gone"
+   },
+   {
+    "rule": "group_empty",
+    "subject": "G"
+   },
+   {
+    "rule": "group_empty",
+    "subject": "empty"
+   }
+  ]
+ },
+ {
+  "name": "not an object: null",
+  "chart": null,
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "chart"
+   }
+  ]
+ },
+ {
+  "name": "not an object: list",
+  "chart": [],
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "chart"
+   }
+  ]
+ },
+ {
+  "name": "not an object: string",
+  "chart": "x",
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "chart"
+   }
+  ]
+ },
+ {
+  "name": "unknown attr",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ],
+   "extra": 1
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "extra"
+   }
+  ]
+ },
+ {
+  "name": "markup in type",
+  "chart": {
+   "type": "<img src=x onerror=alert(1)>",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "type"
+   }
+  ]
+ },
+ {
+  "name": "markup in a node tone",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "<img src=x onerror=alert(1)>",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "markup in a shape",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "<img src=x onerror=alert(1)>",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "markup in an edge tone",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "<img src=x onerror=alert(1)>"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a -> b"
+   }
+  ]
+ },
+ {
+  "name": "markup in a legend tone",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [
+    {
+     "tone": "<img src=x onerror=alert(1)>",
+     "label": "L"
+    }
+   ],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "legend"
+   }
+  ]
+ },
+ {
+  "name": "markup in an id",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "z\"><b",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": []
+  },
+  "problems": [
+   {
+    "rule": "id_invalid",
+    "subject": "z\"><b"
+   }
+  ]
+ },
+ {
+  "name": "missing: type",
+  "chart": {
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "type"
+   }
+  ]
+ },
+ {
+  "name": "missing: direction",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "direction"
+   }
+  ]
+ },
+ {
+  "name": "missing: caption",
+  "chart": {
+   "type": "flow",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "label_required",
+    "subject": "caption"
+   }
+  ]
+ },
+ {
+  "name": "missing: legend",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "legend"
+   }
+  ]
+ },
+ {
+  "name": "missing: groups",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "groups"
+   }
+  ]
+ },
+ {
+  "name": "missing: nodes",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "edges": []
+  },
+  "problems": [
+   {
+    "rule": "nodes_required",
+    "subject": "nodes"
+   }
+  ]
+ },
+ {
+  "name": "missing: edges",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "edges"
+   }
+  ]
+ },
+ {
+  "name": "missing: node tone",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "missing: node start",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box"
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "missing: edge label",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a -> b"
+   }
+  ]
+ },
+ {
+  "name": "missing: edge tone",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": ""
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a -> b"
+   }
+  ]
+ },
+ {
+  "name": "wrong type: label",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": 5,
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "label_required",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "wrong type: caption",
+  "chart": {
+   "type": "flow",
+   "caption": {},
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "label_required",
+    "subject": "caption"
+   }
+  ]
+ },
+ {
+  "name": "wrong type: id",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": 5,
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": []
+  },
+  "problems": [
+   {
+    "rule": "id_invalid",
+    "subject": "nodes[0]"
+   }
+  ]
+ },
+ {
+  "name": "wrong type: group",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false,
+     "group": null
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "wrong type: start",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": "true"
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "wrong type: edge label",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": null,
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a -> b"
+   }
+  ]
+ },
+ {
+  "name": "wrong type: edge end",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": 5,
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "edges[0]"
+   }
+  ]
+ },
+ {
+  "name": "wrong type: edge",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    "a -> b"
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "edges[0]"
+   }
+  ]
+ },
+ {
+  "name": "wrong type: node",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    "b"
+   ],
+   "edges": []
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "nodes[1]"
+   }
+  ]
+ },
+ {
+  "name": "wrong type: legend entry",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [
+    "fail"
+   ],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "legend"
+   }
+  ]
+ },
+ {
+  "name": "extra key: node",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false,
+     "x": 1
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "extra key: edge",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral",
+     "x": 1
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a -> b"
+   }
+  ]
+ },
+ {
+  "name": "extra key: group",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [
+    {
+     "id": "g",
+     "label": "G",
+     "x": 1
+    }
+   ],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false,
+     "group": "g"
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "g"
+   }
+  ]
+ },
+ {
+  "name": "extra key: legend",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [
+    {
+     "tone": "fail",
+     "label": "F",
+     "x": 1
+    }
+   ],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "legend"
+   }
+  ]
+ },
+ {
+  "name": "legend tone twice",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [
+    {
+     "tone": "fail",
+     "label": "F"
+    },
+    {
+     "tone": "fail",
+     "label": "G"
+    }
+   ],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "legend"
+   }
+  ]
+ },
+ {
+  "name": "six legend entries",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [
+    {
+     "tone": "fail",
+     "label": "F"
+    },
+    {
+     "tone": "fail",
+     "label": "F"
+    },
+    {
+     "tone": "fail",
+     "label": "F"
+    },
+    {
+     "tone": "fail",
+     "label": "F"
+    },
+    {
+     "tone": "fail",
+     "label": "F"
+    },
+    {
+     "tone": "fail",
+     "label": "F"
+    }
+   ],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "too_large",
+    "subject": "legend"
+   }
+  ]
+ },
+ {
+  "name": "label with a newline",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "a\nb",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "label with a tab",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "a\tb",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "label with a line separator",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "a b",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "label with a byte order mark",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "a﻿b",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "caption with a control character",
+  "chart": {
+   "type": "flow",
+   "caption": "a\u0001b",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "caption"
+   }
+  ]
+ },
+ {
+  "name": "edge label with a newline",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "a\nb",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a -> b"
+   }
+  ]
+ },
+ {
+  "name": "label with padding does not survive a print",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": " A ",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "label with unicode padding",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A ",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "edge label with padding",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": " x",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a -> b"
+   }
+  ]
+ },
+ {
+  "name": "blank edge label",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": " ",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "a -> b"
+   }
+  ]
+ },
+ {
+  "name": "only a byte order mark",
+  "chart": {
+   "type": "flow",
+   "caption": "c",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "﻿",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a",
+     "to": "b",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "label_required",
+    "subject": "a"
+   }
+  ]
+ },
+ {
+  "name": "unknown attrs sort by UTF-16 code units, not bytes",
+  "chart": {
+   "type": "flow",
+   "caption": "C",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [],
+   "Ａ": 1,
+   "𐀀": 1
+  },
+  "problems": [
+   {
+    "rule": "value_not_allowed",
+    "subject": "𐀀"
+   },
+   {
+    "rule": "value_not_allowed",
+    "subject": "Ａ"
+   }
+  ]
+ },
+ {
+  "name": "edge pairs differ even when a greater-than could join them",
+  "chart": {
+   "type": "flow",
+   "caption": "C",
+   "direction": "across",
+   "legend": [],
+   "groups": [],
+   "nodes": [
+    {
+     "id": "a",
+     "label": "A",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "tone": "neutral",
+     "shape": "box",
+     "start": false
+    }
+   ],
+   "edges": [
+    {
+     "from": "a>b",
+     "to": "a",
+     "label": "",
+     "tone": "neutral"
+    },
+    {
+     "from": "a",
+     "to": "b>a",
+     "label": "",
+     "tone": "neutral"
+    }
+   ]
+  },
+  "problems": [
+   {
+    "rule": "edge_unknown_node",
+    "subject": "a>b -> a"
+   },
+   {
+    "rule": "edge_unknown_node",
+    "subject": "a -> b>a"
+   }
+  ]
+ }
+]

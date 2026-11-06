@@ -1,0 +1,543 @@
+[
+ {
+  "name": "two charts among prose",
+  "html": "<h1 id=\"h_bd857316d3f1\">Title</h1>\n<p>Before.</p>\n<figure data-chart=\"0\" dir=\"auto\"><figcaption>&lt;/figure&gt;&lt;script&gt;alert(1)&lt;/script&gt; &amp; &#39;quotes&#39;</figcaption><ul><li>→ A &lt;b&gt;</li><li>A &lt;b&gt; → B &amp; C: Go</li></ul></figure>\n<p>Between.</p>\n<figure data-chart=\"1\" dir=\"auto\"><figcaption>مسار الموافقة</figcaption><ul><li>← البداية</li><li>البداية ← النهاية: موافقة</li></ul></figure>\n<p>After.</p>",
+  "ast": {
+   "content": [
+    {
+     "attrs": {
+      "anchor": "h_bd857316d3f1",
+      "level": 1
+     },
+     "content": [
+      {
+       "text": "Title",
+       "type": "text"
+      }
+     ],
+     "type": "heading"
+    },
+    {
+     "content": [
+      {
+       "text": "Before.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "caption": "</figure><script>alert(1)</script> & 'quotes'",
+      "direction": "across",
+      "edges": [
+       {
+        "from": "a",
+        "label": "Go",
+        "to": "b",
+        "tone": "neutral"
+       }
+      ],
+      "groups": [],
+      "legend": [],
+      "nodes": [
+       {
+        "id": "a",
+        "label": "A <b>",
+        "shape": "pill",
+        "start": true,
+        "tone": "neutral"
+       },
+       {
+        "id": "b",
+        "label": "B & C",
+        "shape": "pill",
+        "start": false,
+        "tone": "neutral"
+       }
+      ],
+      "type": "states"
+     },
+     "type": "chart"
+    },
+    {
+     "content": [
+      {
+       "text": "Between.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    },
+    {
+     "attrs": {
+      "caption": "مسار الموافقة",
+      "direction": "across",
+      "edges": [
+       {
+        "from": "a",
+        "label": "موافقة",
+        "to": "b",
+        "tone": "neutral"
+       }
+      ],
+      "groups": [],
+      "legend": [],
+      "nodes": [
+       {
+        "id": "a",
+        "label": "البداية",
+        "shape": "box",
+        "start": true,
+        "tone": "neutral"
+       },
+       {
+        "id": "b",
+        "label": "النهاية",
+        "shape": "box",
+        "start": false,
+        "tone": "neutral"
+       }
+      ],
+      "type": "flow"
+     },
+     "type": "chart"
+    },
+    {
+     "content": [
+      {
+       "text": "After.",
+       "type": "text"
+      }
+     ],
+     "type": "paragraph"
+    }
+   ],
+   "type": "doc"
+  }
+ },
+ {
+  "name": "a stored nested chart keeps its place in document order",
+  "html": "<blockquote><figure data-chart=\"0\" dir=\"auto\"><figcaption>Plain</figcaption><ul><li>X → Y</li></ul></figure></blockquote>\n<ul><li><p>item</p><figure data-chart=\"1\" dir=\"auto\"><figcaption>مسار الموافقة</figcaption><ul><li>← البداية</li><li>البداية ← النهاية: موافقة</li></ul></figure></li></ul>\n<figure data-chart=\"2\" dir=\"auto\"><figcaption>&lt;/figure&gt;&lt;script&gt;alert(1)&lt;/script&gt; &amp; &#39;quotes&#39;</figcaption><ul><li>→ A &lt;b&gt;</li><li>A &lt;b&gt; → B &amp; C: Go</li></ul></figure>",
+  "ast": {
+   "content": [
+    {
+     "content": [
+      {
+       "attrs": {
+        "caption": "Plain",
+        "direction": "down",
+        "edges": [
+         {
+          "from": "x",
+          "label": "",
+          "to": "y",
+          "tone": "neutral"
+         }
+        ],
+        "groups": [],
+        "legend": [],
+        "nodes": [
+         {
+          "id": "x",
+          "label": "X",
+          "shape": "box",
+          "start": false,
+          "tone": "neutral"
+         },
+         {
+          "id": "y",
+          "label": "Y",
+          "shape": "box",
+          "start": false,
+          "tone": "neutral"
+         }
+        ],
+        "type": "flow"
+       },
+       "type": "chart"
+      }
+     ],
+     "type": "blockquote"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "item",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        },
+        {
+         "attrs": {
+          "caption": "مسار الموافقة",
+          "direction": "across",
+          "edges": [
+           {
+            "from": "a",
+            "label": "موافقة",
+            "to": "b",
+            "tone": "neutral"
+           }
+          ],
+          "groups": [],
+          "legend": [],
+          "nodes": [
+           {
+            "id": "a",
+            "label": "البداية",
+            "shape": "box",
+            "start": true,
+            "tone": "neutral"
+           },
+           {
+            "id": "b",
+            "label": "النهاية",
+            "shape": "box",
+            "start": false,
+            "tone": "neutral"
+           }
+          ],
+          "type": "flow"
+         },
+         "type": "chart"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "bulletList"
+    },
+    {
+     "attrs": {
+      "caption": "</figure><script>alert(1)</script> & 'quotes'",
+      "direction": "across",
+      "edges": [
+       {
+        "from": "a",
+        "label": "Go",
+        "to": "b",
+        "tone": "neutral"
+       }
+      ],
+      "groups": [],
+      "legend": [],
+      "nodes": [
+       {
+        "id": "a",
+        "label": "A <b>",
+        "shape": "pill",
+        "start": true,
+        "tone": "neutral"
+       },
+       {
+        "id": "b",
+        "label": "B & C",
+        "shape": "pill",
+        "start": false,
+        "tone": "neutral"
+       }
+      ],
+      "type": "states"
+     },
+     "type": "chart"
+    }
+   ],
+   "type": "doc"
+  }
+ },
+ {
+  "name": "a nested fence is code and takes no ordinal",
+  "html": "<blockquote><pre><code>direction: down\ncaption: Plain\nnodes:\n  - { id: x, label: X }\n  - { id: y, label: Y }\nedges:\n  - x -&gt; y</code></pre></blockquote>\n<ul><li><p>item</p><pre><code>caption: مسار الموافقة\nnodes:\n  - { id: a, label: البداية, start: true }\n  - { id: b, label: النهاية }\nedges:\n  - a -&gt; b: موافقة</code></pre></li></ul>\n<figure data-chart=\"0\" dir=\"auto\"><figcaption>&lt;/figure&gt;&lt;script&gt;alert(1)&lt;/script&gt; &amp; &#39;quotes&#39;</figcaption><ul><li>→ A &lt;b&gt;</li><li>A &lt;b&gt; → B &amp; C: Go</li></ul></figure>",
+  "ast": {
+   "content": [
+    {
+     "content": [
+      {
+       "attrs": {
+        "language": "chart"
+       },
+       "content": [
+        {
+         "text": "direction: down\ncaption: Plain\nnodes:\n  - { id: x, label: X }\n  - { id: y, label: Y }\nedges:\n  - x -> y",
+         "type": "text"
+        }
+       ],
+       "type": "codeBlock"
+      }
+     ],
+     "type": "blockquote"
+    },
+    {
+     "content": [
+      {
+       "content": [
+        {
+         "content": [
+          {
+           "text": "item",
+           "type": "text"
+          }
+         ],
+         "type": "paragraph"
+        },
+        {
+         "attrs": {
+          "language": "chart"
+         },
+         "content": [
+          {
+           "text": "caption: مسار الموافقة\nnodes:\n  - { id: a, label: البداية, start: true }\n  - { id: b, label: النهاية }\nedges:\n  - a -> b: موافقة",
+           "type": "text"
+          }
+         ],
+         "type": "codeBlock"
+        }
+       ],
+       "type": "listItem"
+      }
+     ],
+     "type": "bulletList"
+    },
+    {
+     "attrs": {
+      "caption": "</figure><script>alert(1)</script> & 'quotes'",
+      "direction": "across",
+      "edges": [
+       {
+        "from": "a",
+        "label": "Go",
+        "to": "b",
+        "tone": "neutral"
+       }
+      ],
+      "groups": [],
+      "legend": [],
+      "nodes": [
+       {
+        "id": "a",
+        "label": "A <b>",
+        "shape": "pill",
+        "start": true,
+        "tone": "neutral"
+       },
+       {
+        "id": "b",
+        "label": "B & C",
+        "shape": "pill",
+        "start": false,
+        "tone": "neutral"
+       }
+      ],
+      "type": "states"
+     },
+     "type": "chart"
+    }
+   ],
+   "type": "doc"
+  }
+ },
+ {
+  "name": "a callout's fence is code and takes no ordinal",
+  "html": "<aside class=\"callout callout-note\" data-callout=\"note\" role=\"note\"><p>text</p><pre><code>direction: down\ncaption: Plain\nnodes:\n  - { id: x, label: X }\n  - { id: y, label: Y }\nedges:\n  - x -&gt; y</code></pre></aside>\n<figure data-chart=\"0\" dir=\"auto\"><figcaption>مسار الموافقة</figcaption><ul><li>← البداية</li><li>البداية ← النهاية: موافقة</li></ul></figure>",
+  "ast": {
+   "content": [
+    {
+     "attrs": {
+      "kind": "note"
+     },
+     "content": [
+      {
+       "content": [
+        {
+         "text": "text",
+         "type": "text"
+        }
+       ],
+       "type": "paragraph"
+      },
+      {
+       "attrs": {
+        "language": "chart"
+       },
+       "content": [
+        {
+         "text": "direction: down\ncaption: Plain\nnodes:\n  - { id: x, label: X }\n  - { id: y, label: Y }\nedges:\n  - x -> y",
+         "type": "text"
+        }
+       ],
+       "type": "codeBlock"
+      }
+     ],
+     "type": "callout"
+    },
+    {
+     "attrs": {
+      "caption": "مسار الموافقة",
+      "direction": "across",
+      "edges": [
+       {
+        "from": "a",
+        "label": "موافقة",
+        "to": "b",
+        "tone": "neutral"
+       }
+      ],
+      "groups": [],
+      "legend": [],
+      "nodes": [
+       {
+        "id": "a",
+        "label": "البداية",
+        "shape": "box",
+        "start": true,
+        "tone": "neutral"
+       },
+       {
+        "id": "b",
+        "label": "النهاية",
+        "shape": "box",
+        "start": false,
+        "tone": "neutral"
+       }
+      ],
+      "type": "flow"
+     },
+     "type": "chart"
+    }
+   ],
+   "type": "doc"
+  }
+ },
+ {
+  "name": "a chart that fails the check keeps its place",
+  "html": "<figure data-chart=\"0\" dir=\"auto\"><figcaption>Caption words</figcaption><ul><li>→ Node words</li><li>Node words → Other: Edge words</li><li>Other → Node words</li></ul></figure>\n<figure data-chart=\"1\" dir=\"auto\"><figcaption>Bad</figcaption><ul></ul></figure>\n<figure data-chart=\"2\" dir=\"auto\"><figcaption>Caption words</figcaption><ul><li>→ Node words</li><li>Node words → Other: Edge words</li><li>Other → Node words</li></ul></figure>",
+  "ast": {
+   "content": [
+    {
+     "attrs": {
+      "caption": "Caption words",
+      "direction": "across",
+      "edges": [
+       {
+        "from": "nodeid",
+        "label": "Edge words",
+        "to": "other",
+        "tone": "approve"
+       },
+       {
+        "from": "other",
+        "label": "",
+        "to": "nodeid",
+        "tone": "neutral"
+       }
+      ],
+      "groups": [
+       {
+        "id": "groupid",
+        "label": "Group words"
+       }
+      ],
+      "legend": [
+       {
+        "label": "Legend words",
+        "tone": "approve"
+       }
+      ],
+      "nodes": [
+       {
+        "group": "groupid",
+        "id": "nodeid",
+        "label": "Node words",
+        "shape": "pill",
+        "start": true,
+        "tone": "todo"
+       },
+       {
+        "id": "other",
+        "label": "Other",
+        "shape": "box",
+        "start": false,
+        "tone": "neutral"
+       }
+      ],
+      "type": "flow"
+     },
+     "type": "chart"
+    },
+    {
+     "attrs": {
+      "caption": "Bad",
+      "edges": [],
+      "nodes": [
+       {
+        "id": "a",
+        "label": "A",
+        "tone": "\"><script>"
+       }
+      ],
+      "type": "<img src=x onerror=y>"
+     },
+     "type": "chart"
+    },
+    {
+     "attrs": {
+      "caption": "Caption words",
+      "direction": "across",
+      "edges": [
+       {
+        "from": "nodeid",
+        "label": "Edge words",
+        "to": "other",
+        "tone": "approve"
+       },
+       {
+        "from": "other",
+        "label": "",
+        "to": "nodeid",
+        "tone": "neutral"
+       }
+      ],
+      "groups": [
+       {
+        "id": "groupid",
+        "label": "Group words"
+       }
+      ],
+      "legend": [
+       {
+        "label": "Legend words",
+        "tone": "approve"
+       }
+      ],
+      "nodes": [
+       {
+        "group": "groupid",
+        "id": "nodeid",
+        "label": "Node words",
+        "shape": "pill",
+        "start": true,
+        "tone": "todo"
+       },
+       {
+        "id": "other",
+        "label": "Other",
+        "shape": "box",
+        "start": false,
+        "tone": "neutral"
+       }
+      ],
+      "type": "flow"
+     },
+     "type": "chart"
+    }
+   ],
+   "type": "doc"
+  }
+ }
+]
